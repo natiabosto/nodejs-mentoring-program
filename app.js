@@ -62,3 +62,46 @@ withTime.on('error', (error) => console.error('Error:', error));
 withTime.execute(fetchFromUrl, 'http://jsonplaceholder.typicode.com/posts/1');
 
 console.log(withTime.rawListeners('end'));
+
+//  Task 3
+
+const fs = require('fs');
+const path = require('path');
+
+const csvFilePath = path.join(__dirname, 'data.csv');
+const txtFilePath = path.join(__dirname, 'output.txt');
+
+const readStream = fs.createReadStream(csvFilePath, { encoding: 'utf-8' });
+const writeStream = fs.createWriteStream(txtFilePath, { encoding: 'utf-8' });
+
+readStream.on('data', (chunk) => {
+  const lines = chunk.split(/\r?\n/);
+
+  lines.forEach((line) => {
+    const fields = line.split(',');
+
+    const jsonData =
+      JSON.stringify({
+        Book: fields[0],
+        Author: fields[1],
+        Amount: parseInt(fields[2]),
+        Price: parseFloat(fields[3]),
+      }) + '\n';
+
+    writeStream.write(jsonData, (err) => {
+      if (err) {
+        console.error('Error writing to TXT file:', err);
+      }
+    });
+  });
+});
+
+readStream.on('error', (err) => {
+  console.error('Error reading CSV file:', err);
+});
+
+writeStream.on('error', (err) => {
+  console.error('Error writing to TXT file:', err);
+});
+
+console.log('Conversion process started...');
