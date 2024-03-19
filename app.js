@@ -47,3 +47,18 @@ myEmitter.off('eventOne', c1);
 console.log(myEmitter.listenerCount('eventOne'));
 myEmitter.off('eventOne', c2);
 console.log(myEmitter.listenerCount('eventOne'));
+
+// Task 2
+
+const { WithTime, fetchFromUrl } = require('./WithTime');
+
+const withTime = new WithTime();
+
+withTime.on('begin', () => console.log('About to execute'));
+withTime.on('end', () => console.log('Done with execute'));
+withTime.on('data', (data) => console.log('Data received:', data));
+withTime.on('error', (error) => console.error('Error:', error));
+
+withTime.execute(fetchFromUrl, 'http://jsonplaceholder.typicode.com/posts/1');
+
+console.log(withTime.rawListeners('end'));
