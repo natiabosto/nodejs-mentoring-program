@@ -4,6 +4,12 @@ module.exports = {
   roots: ['./src'],
   silent: false,
   verbose: true,
-  collectCoverageFrom: ['src/**'],
+  collectCoverageFrom: ['./src/**'],
   coverageReporters: ['text'],
+  testPathIgnorePatterns: ['./src/e2e/'],
+  coverageThreshold: {
+    global: {
+      lines: 85,
+    },
+  },
 };

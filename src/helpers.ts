@@ -2,6 +2,7 @@ import { SUPPORTED_COUNTRIES } from './config';
 import { PublicHoliday, PublicHolidayShort } from './types';
 
 const validateCountry = (country: string) => {
+  console.log('aqac')
   return SUPPORTED_COUNTRIES.includes(country);
 };
 
@@ -17,7 +18,7 @@ export const validateInput = ({
   country?: string;
 }) => {
   if (country && !validateCountry(country)) {
-    throw new Error(`Country provided is not supported, received: ${country}`);
+    throw new Error('Country provided is not supported, received: ' + country);
   }
 
   if (year && !validateYear(year)) {

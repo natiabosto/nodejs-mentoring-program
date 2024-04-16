@@ -1,0 +1,1 @@
+console.log("Integration test for public holidays has run")
