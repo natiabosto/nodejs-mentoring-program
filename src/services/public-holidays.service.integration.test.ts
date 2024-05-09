@@ -1,1 +1,3 @@
-console.log("Integration test for public holidays has run")
+describe('integration tests', () => {
+  test('integration test :D', () => {});
+});

@@ -2,7 +2,6 @@ import { SUPPORTED_COUNTRIES } from './config';
 import { PublicHoliday, PublicHolidayShort } from './types';
 
 const validateCountry = (country: string) => {
-  console.log('aqac')
   return SUPPORTED_COUNTRIES.includes(country);
 };
 

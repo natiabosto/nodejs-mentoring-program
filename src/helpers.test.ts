@@ -11,6 +11,24 @@ const INVALID_INPUTS = {
   country: 'FalseCountry',
 };
 
+const PUBLIC_HOLIDAY = {
+  date: '2024-01-01',
+  localName: 'ახალი წელი',
+  name: "New Year's Day",
+  countryCode: 'GE',
+  fixed: false,
+  global: true,
+  counties: null,
+  launchYear: null,
+  types: ['Public'],
+};
+
+const SHORTEDENED_PUBLIC_HOLIDAY = {
+  name: "New Year's Day",
+  localName: 'ახალი წელი',
+  date: '2024-01-01',
+};
+
 describe('Validate inputs of Country and Year', () => {
   test('should return true if Country is supported and Year is current', () => {
     const validationResult = validateInput({
@@ -42,6 +60,9 @@ describe('Validate inputs of Country and Year', () => {
 });
 
 describe('Validate shortening of public holiday', () => {
-  test('should return shortened public holiday', () => {});
-  test('should fail if public holiday is not shortened correctly', () => {});
+  test('should return shortened public holiday', () => {
+    expect(shortenPublicHoliday(PUBLIC_HOLIDAY)).toEqual(
+      SHORTEDENED_PUBLIC_HOLIDAY
+    );
+  });
 });
